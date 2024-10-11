@@ -36,16 +36,33 @@ export const Icons = {
       <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
     </svg>
   ),
+  linkedin: (props: IconProps) => (
+      <svg
+          role="img"
+          viewbox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          {...props}
+          >
+          <title>LinkedIn</title>
+          
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>
+      </svg>
+     ),
   logo: (props: IconProps) => (
-    <svg
-      role="img"
-      fill="#bf83fc"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
+    
+<svg 
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#8200c1"
+    stroke-width="2"
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+    {...props}
     >
-      <title>MDX</title>
-      <path d="M.79 7.12h22.42c.436 0 .79.355.79.792v8.176c0 .436-.354.79-.79.79H.79a.79.79 0 0 1-.79-.79V7.912a.79.79 0 0 1 .79-.791V7.12Zm2.507 7.605v-3.122l1.89 1.89L7.12 11.56v3.122h1.055v-5.67l-2.99 2.99L2.24 9.056v5.67h1.055v-.001Zm8.44-1.845-1.474-1.473-.746.746 2.747 2.747 2.745-2.747-.746-.746-1.473 1.473v-4h-1.054v4Zm10.041.987-2.175-2.175 2.22-2.22-.746-.746-2.22 2.22-2.22-2.22-.747.746 2.22 2.22-2.176 2.177.746.746 2.177-2.177 2.176 2.175.745-.746Z" />
-    </svg>
-  ),
+    <title></title>
+    <rect width="18" height="18" x="3" y="3" rx="2"/>
+    <path d="M11 9h4a2 2 0 0 0 2-2V3"/><circle cx="9" cy="9" r="2"/><path d="M7 21v-4a2 2 0 0 1 2-2h4"/><circle cx="15" cy="15" r="2"/></svg>
+)
 };
