@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 import { SOCIALS } from "@/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { TypeAnimation } from 'react-type-animation'
 
 export default function Home() {
   return (
@@ -25,10 +26,27 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <h1 className="text-3xl capitalize sm:text-5xl md:text-6xl lg:text-7xl">
-          A personal Blog template using{" "}
-          <span className="font-code text-yellow-300">Mdx</span> and{" "}
-          <span className="font-code text-primary">NextJs14</span>
+        <h1 className="text-xl capitalize sm:text-5xl md:text-6xl lg:text-7xl">
+          <TypeAnimation
+      sequence={[
+        'I am a software engineer',
+        2000,
+        'I am a frontend wizard',
+        2000,
+        'I am a graphic artist',
+        2000,
+        'I am a UI/UX engineer',
+        2000,
+        'I am a unicorn',
+        2000,
+        'I am a geek!',
+        2000
+      ]}
+      wrapper="span"
+      speed={50}
+      style={{ fontSize: '2em', display: 'inline-block' }}
+      repeat={Infinity}
+    />   
         </h1>
         <p className="max-w-2xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
           {siteConfig.description}
