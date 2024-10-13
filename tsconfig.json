@@ -19,7 +19,11 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "#site/content": ["./.velite"]
+      "#site/content": ["./.velite"],
+      "#site/components": ["./src/components"],
+      "#site/styles": ["./src/styles"],
+      "#site/lib": ["./src/lib"],
+      
     }
   },
   "include": [

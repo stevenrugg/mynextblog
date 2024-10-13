@@ -39,7 +39,7 @@ export const Icons = {
   linkedin: (props: IconProps) => (
       <svg
           role="img"
-          viewbox="0 0 24 24"
+          viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
           {...props}
           >
@@ -56,9 +56,9 @@ export const Icons = {
     viewBox="0 0 24 24"
     fill="none"
     stroke="#8200c1"
-    stroke-width="2"
-    stroke-linecap="round" 
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round" 
+    strokeLinejoin="round"
     {...props}
     >
     <title></title>

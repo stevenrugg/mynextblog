@@ -21,6 +21,7 @@ const blogs = defineCollection({
       image: s.string().max(99),
       author: s.string(),
       body: s.mdx(),
+      featured: s.boolean().default(false),
     })
     .transform(computedFields),
 });

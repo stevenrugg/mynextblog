@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="container relative max-w-6xl py-6 lg:py-10">
-      <PageHeader title="About" description="Let's get to know each other" />
+      <PageHeader title="About" description="Exploring the Future of Frontend Development, Technology, and Quantum Computing" />
       <hr className="my-8" />
 
       <div className="flex flex-col items-center space-y-6 lg:flex-row  lg:space-x-6 lg:space-y-0">
@@ -52,15 +52,12 @@ export default function AboutPage() {
           </div>
         </div>
         <p className="flex-1 text-center text-sm text-muted-foreground lg:text-start xl:text-base">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, harum
-          odio! Molestias natus possimus dolorem modi libero eaque in aliquam
-          harum recusandae nam! Reprehenderit soluta fuga consequuntur, iure
-          corrupti autem! Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Modi asperiores voluptate, veritatis non placeat numquam.
-          Repellendus mollitia aut reprehenderit est. Reprehenderit soluta fuga
-          consequuntur, iure corrupti autem! Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Modi asperiores voluptate, veritatis non
-          placeat numquam. Repellendus mollitia aut reprehenderit est.
+        Welcome to my blog, where I explore the ever-evolving world of technology. As a passionate frontend web 
+        developer and tech enthusiast, I delve into topics ranging from web development and cutting-edge 
+        technology to quantum computing. I also keep a close eye on current events and the latest tech news, 
+        offering insights into how these innovations shape our future. Whether you&apos;re a fellow developer, 
+        a tech aficionado, or just curious about where the digital world is headed, you&apos;ll find thoughtful 
+        articles and updates that keep you informed and inspired.
         </p>
       </div>
     </div>

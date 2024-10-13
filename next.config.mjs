@@ -3,6 +3,7 @@ import { build } from "velite";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config) => {
+    config.resolve.fallback = { fs: false, path: false };
     config.plugins.push(new VeliteWebpackPlugin());
     return config;
   },

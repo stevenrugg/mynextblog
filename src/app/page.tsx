@@ -1,11 +1,41 @@
+
+
+import FeatureBlogCard from "@/components/BlogCard";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { SOCIALS } from "@/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { TypeAnimation } from 'react-type-animation'
+import TypingAnimation from "@/components/TypingAnimation";
 
-export default function Home() {
+
+
+interface BlogPost {
+  slug: string;
+  frontmatter: {
+    title: string;
+    description: string;
+    date: string;
+    featured: boolean;
+  };
+}
+
+async function fetchPosts(): Promise<BlogPost[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/posts`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch blog posts');
+  }
+  const posts = await res.json();
+  
+  return posts;
+}
+
+
+
+// eslint-disable-next-line @next/next/no-async-client-component
+export default async function Home() {
+  const posts = await fetchPosts();
+  const featuredPosts = posts.filter((post) => post.frontmatter.featured);
   return (
     <section className="space-y-6 pb-8 md:pb-12 md:pt-10 lg:py-32">
       <div className="container mt-6 flex max-w-5xl flex-col items-center gap-4 text-center xl:mt-0">
@@ -26,27 +56,8 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <h1 className="text-xl capitalize sm:text-5xl md:text-6xl lg:text-7xl">
-          <TypeAnimation
-      sequence={[
-        'I am a software engineer',
-        2000,
-        'I am a frontend wizard',
-        2000,
-        'I am a graphic artist',
-        2000,
-        'I am a UI/UX engineer',
-        2000,
-        'I am a unicorn',
-        2000,
-        'I am a geek!',
-        2000
-      ]}
-      wrapper="span"
-      speed={50}
-      style={{ fontSize: '2em', display: 'inline-block' }}
-      repeat={Infinity}
-    />   
+        <h1 className="text-xl text-yellow-500 sm:text-lg md:text-xl lg:text-2xl">
+         <TypingAnimation></TypingAnimation>
         </h1>
         <p className="max-w-2xl leading-normal text-muted-foreground sm:text-xl sm:leading-8">
           {siteConfig.description}
@@ -59,9 +70,12 @@ export default function Home() {
               "border",
             )}
           >
-            🎉My Blog
+            👨‍💻📝 All Posts 📖💻
           </Link>
         </div>
+    
+        <FeatureBlogCard featuredPosts={featuredPosts} />
+      
       </div>
     </section>
   );

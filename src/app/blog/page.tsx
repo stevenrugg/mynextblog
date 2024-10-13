@@ -18,7 +18,7 @@ export default function BlogPage() {
     <div className="container max-w-4xl py-6 lg:py-10">
       <PageHeader
         title="Blog"
-        description="A blog using velite. Posts are written in MDX"
+        description="Blog uses Velite for its framework. Posts utilize MDX format with YAML frontmatter."
       />
       <hr className="my-8" />
 
