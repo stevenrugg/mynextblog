@@ -6,9 +6,9 @@ export const siteConfig = {
   author: "Steven Rugg - SeattleSuperGeek",
   authorImage: authorAvatar,
   social: {
-    github: "https://github.com/devbertskie",
-    twitter: "https://twitter.com",
-    facebook: "https://facebook.com",
+    github: "https://github.com/stevenrugg",
+    twitter: "https://twitter.com/stevensupergeek",
+    facebook: "https://facebook.com/stevenrugg",
     linkedin: "https//linkedin/in/stevenwrugg"
   },
 };

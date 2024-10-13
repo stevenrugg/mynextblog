@@ -17,7 +17,7 @@ export default function FeatureBlogCard({ featuredPosts }: Props) {
   return (
     <div className="mt-12 w-full">
       <h2 className="text-center text-3xl font-bold">Featured Posts</h2>
-      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid content-evenly gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {featuredPosts.map((blog) => (
           <div key={blog.slug} className="rounded-lg border p-4">
             <a href={`/blog/${blog.slug}`}>
