@@ -1,0 +1,411 @@
+---
+featured: true
+title: "Building a WebRTC Video Sharing App with File Sharing"
+description: "WebRTC or Real-Time-Communication is a powerful solution for peer-to-peer media and data exchange. Learn how to build a video chat application with file sharing."
+image: "/images/blog/WebRTC.png"
+date: "2024-09-30"
+author: "Steven Rugg"
+---
+
+In today’s digital landscape, real-time communication has become essential, and WebRTC (Web Real-Time Communication) offers a powerful solution for peer-to-peer media and data exchange. In this article, we’ll walk through how to implement a video chat application using WebRTC and enhance it with a file-sharing feature. By the end, you’ll have a working application that not only enables video chat but also allows users to share files via a shared folder.
+Table of Contents
+
+    1. Overview of WebRTC
+    2. Setup
+    3. Implementing WebRTC for Video Chat
+    4. Adding a File Sharing Feature
+    5. Testing and Debugging
+    6. Conclusion
+
+## 1. Overview of WebRTC
+
+WebRTC is a free, open-source project that provides browsers and mobile applications with real-time communication capabilities via simple APIs. It supports audio, video, and data sharing between peers, bypassing servers after the initial signaling setup.
+
+Here’s a simplified workflow for WebRTC:
+
+   - Signaling: Exchange of session control messages to establish a connection (handled by a separate signaling server).
+   - ICE (Interactive Connectivity Establishment): Finding the best route to connect peers.
+   - Media Streams: Audio and video data are sent via a RTCPeerConnection.
+
+For our application, we’ll leverage WebRTC for video chat and use its data channel feature to facilitate file sharing.
+
+## 2. Project Setup
+First, we’ll need to create a Node.js environment for our application. Install the required dependencies, such as Express for the server, and Socket.io for signaling.
+
+### Step A: Initialize the project
+
+```bash
+mkdir webrtc-video-chat
+cd webrtc-video-chat
+npm init -y
+npm install express socket.io
+```
+
+### Step B: Project structure Your folder structure should look like this:
+
+```markdown
+- webrtc-video-chat
+  - public
+    - index.html
+    - css/styles.css
+    - js/main.js
+  - server.js
+  ```
+
+## 3. Implementing WebRTC for Video Chat
+
+### Step A: Setting up the server
+
+We&apos;ll use Express to serve the front-end files and Socket.io for signaling.
+
+```js
+// server.js
+const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
+
+app.use(express.static('public'));
+
+io.on('connection', (socket) => {
+  console.log('A user connected');
+
+  socket.on('offer', (offer) => {
+    socket.broadcast.emit('offer', offer);
+  });
+
+  socket.on('answer', (answer) => {
+    socket.broadcast.emit('answer', answer);
+  });
+
+  socket.on('candidate', (candidate) => {
+    socket.broadcast.emit('candidate', candidate);
+  });
+});
+
+server.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
+```
+
+### Step B: Frontend HTML layout
+
+The main layout includes two video elements for local and remote streams, and a chatroom where users will share files.
+
+```html
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebRTC Video Chat</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Video Chat with File Sharing</h1>
+  <div id="video-grid">
+    <video id="localVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video>
+  </div>
+  <input type="file" id="fileInput" />
+  <button id="shareFileButton">Share File</button>
+  <ul id="fileList"></ul>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+## Step 3: WebRTC configuration
+
+In main.js, we&apos;ll set up the connection between peers using WebRTC’s RTCPeerConnection. Socket.io will handle signaling for offers, answers, and ICE candidates.
+```js
+// public/js/main.js
+const localVideo = document.getElementById('localVideo');
+const remoteVideo = document.getElementById('remoteVideo');
+const socket = io();
+let localStream;
+let peerConnection;
+
+const configuration = {
+  iceServers: [
+    { urls: 'stun:stun.l.google.com:19302' },
+  ],
+};
+
+// Get user media (camera and microphone)
+navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+  .then((stream) => {
+    localStream = stream;
+    localVideo.srcObject = stream;
+
+    peerConnection = new RTCPeerConnection(configuration);
+
+    // Add local stream tracks to peer connection
+    localStream.getTracks().forEach(track => {
+      peerConnection.addTrack(track, localStream);
+    });
+
+    // Handle new tracks received from the remote peer
+    peerConnection.ontrack = (event) => {
+      remoteVideo.srcObject = event.streams[0];
+    };
+
+    // ICE candidate gathering
+    peerConnection.onicecandidate = (event) => {
+      if (event.candidate) {
+        socket.emit('candidate', event.candidate);
+      }
+    };
+
+    // **Handle negotiation**
+    peerConnection.onnegotiationneeded = async () => {
+      try {
+        const offer = await peerConnection.createOffer();
+        await peerConnection.setLocalDescription(offer);
+        socket.emit('offer', peerConnection.localDescription);
+      } catch (error) {
+        console.error("Error during negotiation", error);
+      }
+    };
+
+    // Handle incoming offer
+    socket.on('offer', async (offer) => {
+      if (!peerConnection) return;
+      await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+      const answer = await peerConnection.createAnswer();
+      await peerConnection.setLocalDescription(answer);
+      socket.emit('answer', peerConnection.localDescription);
+    });
+
+    // Handle incoming answer
+    socket.on('answer', async (answer) => {
+      await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+    });
+
+    // Handle incoming ICE candidates
+    socket.on('candidate', async (candidate) => {
+      await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+    });
+  })
+  .catch((error) => {
+    console.error("Error accessing media devices.", error);
+  });
+```
+<hr/>
+## Step-by-Step Breakdown of ```public/js/main.js```
+<hr/>
+### I. Setting up the local media (camera and microphone)
+
+We use getUserMedia to access the user's camera and microphone and display the local video.
+
+```js
+navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+  .then((stream) => {
+    localStream = stream;
+    localVideo.srcObject = stream;
+```
+    What this does:
+        - It prompts the user for permission to access their camera and microphone.
+        - Once granted, the stream is captured and displayed in the localVideo element on the page.
+        - This stream will also be sent to the remote peer later on.
+
+### II. Creating the WebRTC Peer Connection
+
+After capturing the media, we create a `RTCPeerConnection`, which will manage the video/audio streaming and data channel between two peers.
+
+```js
+peerConnection = new RTCPeerConnection(configuration);
+```
+    What this does:
+        - RTCPeerConnection is responsible for handling the peer-to-peer connection.
+        - It uses the provided ICE server configuration (in this case, Google's STUN server) to help establish the connection by finding the best path between the peers.
+
+### III. Adding local media tracks to the Peer Connection
+
+Now that we have the local media stream, we need to add each track (video/audio) to the peer connection.
+
+```js
+localStream.getTracks().forEach(track => {
+  peerConnection.addTrack(track, localStream);
+});
+```
+    What this does:
+        - This code iterates over the media tracks (both video and audio) in the local stream and adds them to the peer connection.
+        - This is necessary so that the remote peer can receive the local video and audio streams.
+
+### IV. Handling Remote Media Streams
+
+The ontrack event is triggered when we receive media (audio/video) from the remote peer. Here, we define what to do when remote media is received.
+
+```js
+peerConnection.ontrack = (event) => {
+  remoteVideo.srcObject = event.streams[0];
+};
+```
+    What this does:
+       - When a track is received from the remote peer, it is added to the remoteVideo element for display.
+       - This enables the local user to see the remote video stream.
+
+### V. ICE Candidate Gathering
+
+WebRTC requires the exchange of ICE candidates (Interactive Connectivity Establishment), which help the peers find the best way to communicate directly.
+
+```js
+peerConnection.onicecandidate = (event) => {
+  if (event.candidate) {
+    socket.emit('candidate', event.candidate);
+  }
+};
+```
+    What this does:
+        - The onicecandidate event is triggered when a new ICE candidate is found.
+        - The candidate is then sent via Socket.io to the other peer.
+        - These candidates help establish the connection between the peers, even if they are behind different networks (e.g., NAT, firewalls).
+
+### VI. Negotiating the Connection (onnegotiationneeded)
+
+The onnegotiationneeded event is fired when a change occurs that requires a new offer/answer exchange. This happens, for example, when you add a track to the peer connection.
+
+```js
+peerConnection.onnegotiationneeded = async () => {
+  try {
+    const offer = await peerConnection.createOffer();
+    await peerConnection.setLocalDescription(offer);
+    socket.emit('offer', peerConnection.localDescription);
+  } catch (error) {
+    console.error("Error during negotiation", error);
+  }
+};
+```
+    What this does:
+        - When a negotiation is needed (e.g., after adding a track), WebRTC creates a new offer and sets it as the local description (this is the local side of the connection’s parameters).
+        - The offer is then sent to the remote peer via Socket.io for them to set as their remote description.
+        - This negotiation ensures that both peers agree on the connection details.
+
+### VII. Receiving the Offer from the Remote Peer
+
+The remote peer will receive the offer and respond with an answer to complete the connection handshake.
+
+```js
+socket.on('offer', async (offer) => {
+  if (!peerConnection) return;
+  await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+  const answer = await peerConnection.createAnswer();
+  await peerConnection.setLocalDescription(answer);
+  socket.emit('answer', peerConnection.localDescription);
+});
+```
+    What this does:
+       - When the local peer sends an offer, the remote peer sets it as their remote description.
+       - After that, the remote peer creates an answer and sends it back to the local peer to confirm the connection parameters.
+       - The local peer will then set this answer as their remote description.
+
+### VIII. Receiving the Answer from the Remote Peer
+
+After the local peer sends the offer, it waits for the answer from the remote peer to finalize the connection.
+
+```js
+socket.on('answer', async (answer) => {
+  await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+});
+```
+    What this does:
+        - Once the local peer receives the answer, it sets it as the remote description, completing the connection negotiation.
+        - Now both peers are connected and can start streaming video/audio.
+
+### IX. Handling ICE Candidates from the Remote Peer
+
+When the remote peer sends ICE candidates, the local peer needs to add them to its connection to establish the best route for the data exchange.
+
+```js
+socket.on('candidate', async (candidate) => {
+  await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+});
+```
+    What this does:
+       - As the remote peer discovers new ICE candidates, it sends them to the local peer.
+       - The local peer then adds these candidates to its connection, improving the chances of establishing a successful connection.
+
+### X. Signaling and Communication via Socket.io
+
+Socket.io is used as a signaling server to handle the exchange of offers, answers, and ICE candidates between the peers. It doesn’t handle the media/data directly, but it’s crucial for setting up the initial connection.
+
+### Recap:
+
+    - Local Media: Access the local video/audio and add it to the WebRTC peer connection.
+    - Peer Connection: Create a RTCPeerConnection and use it to handle video/audio streams.
+    - ICE Candidates: Gather and exchange ICE candidates to establish a peer-to-peer connection.
+    - Negotiation: Use onnegotiationneeded to handle the offer/answer exchange when the connection changes (e.g., adding media).
+    - Signaling: Use Socket.io for signaling offers, answers, and ICE candidates.
+
+This flow allows us to establish a fully functional WebRTC video chat application. Adding file sharing via a data channel would follow the same steps, using the RTCDataChannel API to exchange binary data (files) between peers.
+
+<hr/>
+## 4. Adding a File Sharing Feature
+
+Now let&apos;s add the file sharing functionality by using WebRTC&apos;s RTCDataChannel.
+
+### Step A: Create a data channel for file sharing
+
+```js
+// setup the data channel for file sharing
+let dataChannel = peerConnection.createDataChannel("fileChannel");
+
+// get HTML button and input elements for file sharing using the data channel
+document.getElementById('shareFileButton').addEventListener('click', () => {
+  const fileInput = document.getElementById('fileInput');
+  const file = fileInput.files[0];
+  
+  if (file) {
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onload = () => {
+      dataChannel.send(reader.result);
+      displayFile(file.name);
+    };
+  }
+});
+// Handle incoming data with file content using the data channel.
+dataChannel.onmessage = (event) => {
+  const receivedFile = new Blob([event.data]);
+  const url = URL.createObjectURL(receivedFile);
+  displayFile(url);
+};
+// Display the file in the list. Re-render the DOM with the file URL.
+function displayFile(fileNameOrUrl) {
+  const fileList = document.getElementById('fileList');
+  const li = document.createElement('li');
+  li.innerHTML = `<a href="${fileNameOrUrl}" download>Download File</a>`;
+  fileList.appendChild(li);
+}
+```
+
+Here, we create a RTCDataChannel for file transfer, allowing binary data (files) to be shared between peers.
+
+## 5. Testing and Debugging
+
+Once the application is set up, open two browser tabs and connect them using the video chat. Test the video call and file sharing to ensure everything is working smoothly.
+
+Common debugging tips:
+
+    - Ensure STUN/TURN servers are properly configured for NAT traversal. You can use a site like <a className="text-yellow-500 font-" href="xirsys.com">xirsys.com</a> for free ICE servers.
+    - Use Chrome DevTools or Firefox WebRTC internals for logging connection details.
+    - Add console.log("Message") statements to track the flow of signaling and data exchange.
+    - Check the WebRTC API documentation for more details on handling errors and edge cases.
+
+## 6. Conclusion
+
+With this WebRTC video chat application, you now have the foundation to build more advanced real-time communication apps. The file sharing functionality 
+demonstrates WebRTC&apos;s versatility beyond just media streaming, making it suitable for a wide range of peer-to-peer use cases. Expand this
+ project by adding features like chat messaging, room systems, or enhanced file handling.
+
+WebRTC opens up powerful, low-latency communication directly in the browser, pushing the boundaries of what can be built without relying on central servers 
+for media exchange. I have intentionally left out styling of this application as I will leave it up to you, my reader to pick
+and implement a design that suits your needs. I suggest using CSS frameworks like React-Bootstrap or TailwindCSS to speed up the process. There is also 
+the option of using a CSS-in-JS library like styled-components or emotion for a more dynamic approach to styling. Happy Coding!

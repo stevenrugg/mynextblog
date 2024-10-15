@@ -1,5 +1,3 @@
-
-
 import { cn } from '@/lib/utils'
 import BlogCard from '@/components/BlogCard'
 import React from 'react'

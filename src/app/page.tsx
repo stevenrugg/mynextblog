@@ -7,6 +7,8 @@ import { SOCIALS } from "@/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import TypingAnimation from "@/components/TypingAnimation";
+import { revalidatePath } from "next/cache";
+
 
 
 
@@ -34,8 +36,9 @@ async function fetchPosts(): Promise<BlogPost[]> {
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function Home() {
-  const posts = await fetchPosts();
-  const featuredPosts = posts.filter((post) => post.frontmatter.featured);
+revalidatePath('src/content/blog'); 
+const posts = await fetchPosts();
+const featuredPosts = posts.filter((post) => post.frontmatter.featured);
   return (
     <section className="space-y-6 pb-8 md:pb-12 md:pt-10 lg:py-32">
       <div className="container mt-6 flex max-w-5xl flex-col items-center gap-4 text-center xl:mt-0">
@@ -75,7 +78,7 @@ export default async function Home() {
         </div>
     
         <FeatureBlogCard featuredPosts={featuredPosts} />
-      
+       
       </div>
     </section>
   );

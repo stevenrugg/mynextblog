@@ -18,16 +18,16 @@ export default function BlogPage() {
     <div className="container max-w-4xl py-6 lg:py-10">
       <PageHeader
         title="Blog"
-        description="Blog uses Velite for its framework. Posts utilize MDX format with YAML frontmatter."
+        description="Learn and explore the world of frontend development, quantum computing, and technology trends through educational content designed to empower and inspire innovation."
       />
       <hr className="my-8" />
 
       {blogs.length ? (
-        <div className="grid gap-10 sm:grid-cols-2">
+        <div className="grid gap-10  sm:grid-cols-2">
           {blogs.map((blog) => (
             <article
               key={blog.slug}
-              className="group relative flex flex-col space-y-2"
+              className="group relative flex flex-col space-y-2 "
             >
               {blog.image && (
                 <Image
@@ -35,7 +35,7 @@ export default function BlogPage() {
                   alt={blog.title}
                   width={804}
                   height={452}
-                  className="border bg-muted transition-colors"
+                  className="border bg-muted transition-colors hover:shadow-violet-600 dark:hover:shadow-violet-600"
                 />
               )}
 
@@ -47,7 +47,7 @@ export default function BlogPage() {
               )}
 
               {blog.date && (
-                <p className="text-sm text-muted-foreground">
+                <p className="text-left text-sm text-yellow-500">
                   {formatDate(blog.date)}
                 </p>
               )}

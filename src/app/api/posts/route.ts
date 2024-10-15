@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import matter from 'gray-matter';
 
+
 interface BlogPost {
   slug: string;
   frontmatter: {
@@ -25,7 +26,7 @@ export async function GET() {
       const filePath = path.join(directory, file);
       const fileContents = fs.readFileSync(filePath, 'utf-8');
       const { data: frontmatter } = matter(fileContents);
-
+      
       return {
         slug: file.replace('.mdx', ''),
         frontmatter: {
@@ -34,8 +35,9 @@ export async function GET() {
           date: frontmatter.date,
           featured: frontmatter.featured,
         },
-      };
+      }
     });
+  
 
   return NextResponse.json(posts);
 }

@@ -30,7 +30,7 @@ export default function AboutPage() {
             />
             <h3 className="mt-8 text-lg font-semibold">{siteConfig.author}</h3>
             <p className="text-center text-sm text-muted-foreground">
-              Web Developer
+              Full Stack Software Engineer
             </p>
             <div className="flex items-center space-x-2">
               {SOCIALS.map((social) => (

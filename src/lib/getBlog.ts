@@ -35,7 +35,7 @@ export const getBlogBySlug = async (slug: string) => {
  * The data is the frontmatter of the file, the slug is the name of the file, and the content is the
  * content of the file.
  *
- * The data is typed as Blog, which we can see at '@/data/blog/blog.type.ts'
+ * The data is typed as Blog'
  * @returns An array of objects.
  */
 const getBlog = async () => {
