@@ -1,0 +1,11 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "F:\\home\\steven\\Projects\\next-mdx-blog\\db.sqlite",
+            "name": "db"
+        }
+    ]
+}

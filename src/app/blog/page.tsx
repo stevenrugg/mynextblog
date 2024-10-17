@@ -23,11 +23,11 @@ export default function BlogPage() {
       <hr className="my-8" />
 
       {blogs.length ? (
-        <div className="grid gap-10  sm:grid-cols-2">
+        <div className="grid gap-10 sm:grid-cols-2">
           {blogs.map((blog) => (
             <article
               key={blog.slug}
-              className="group relative flex flex-col space-y-2 "
+              className="group relative flex flex-col space-y-2 bg-secondary"
             >
               {blog.image && (
                 <Image
@@ -39,20 +39,20 @@ export default function BlogPage() {
                 />
               )}
 
-              <h2 className="text-2xl font-extrabold text-primary">
+              <h2 className="p-2 text-2xl font-extrabold text-primary">
                 {blog.title}
               </h2>
               {blog.description && (
-                <p className="text-muted-foreground">{blog.description}</p>
+                <p className="p-2 text-muted-foreground">{blog.description}</p>
               )}
 
               {blog.date && (
-                <p className="text-left text-sm text-yellow-500">
+                <p className="mb-2 text-pretty px-2 pb-3 text-left text-sm text-yellow-500">
                   {formatDate(blog.date)}
                 </p>
               )}
 
-              <Link href={blog.slug} className="absolute inset-0">
+              <Link href={blog.slug} className="absolute inset-0 text-slate-200">
                 <span className="sr-only">View Article</span>
               </Link>
             </article>

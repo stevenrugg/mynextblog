@@ -76,14 +76,14 @@ This will create a new React app pre-configured with Server Components support.
 Next, create a Server Component in your application. Server Components are simple to define, just like traditional React components, but they only run on the server. Here’s an example:
 
 ```js
-// src/components/MyServerComponent.js
-'use server'
+// src/components/MyServerComponent.server.js
 
 import React from 'react';
 
 const MyServerComponent = () => {
+  'use server'
+  
   const data = fetchSomeDataFromAPI(); // Fetch data on the server
-
   return (
     <div>
       <h1>Data from the server: {data}</h1>
@@ -94,7 +94,7 @@ const MyServerComponent = () => {
 export default MyServerComponent;
 ```
 
-Notice the `'use server'` directive at the top, which indicates that this component will only run on the server.
+Notice the `'use server'` directive, and the naming convention **/*.server.js which indicate that this component will only run on the server.
 ### Step 3: Use the Server Component in Your App
 
 To use the Server Component in your app, you can render it within a client component or directly in your server-side rendering function:
@@ -120,6 +120,10 @@ Now, start the React development server using:
 
 ```bash
 npm start
+```
+OR if you are using Next.js 
+```bash
+npx next dev
 ```
 When you load the app, React will render the MyServerComponent on the server and send the pre-rendered HTML to the browser, reducing the amount of JavaScript that needs to be loaded on the client.
 ## 6. Use Cases for React Server Components

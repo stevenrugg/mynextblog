@@ -9,6 +9,8 @@ interface BlogPost {
     title: string;
     description: string;
     date: string;
+    author: string;
+    image: string;
     featured: boolean;
   };
   content: string;
@@ -38,6 +40,8 @@ const useFeaturedMdxFiles = (directory: string) => {
                   description: frontmatter.description,
                   date: frontmatter.date,
                   featured: frontmatter.featured,
+                  author: frontmatter.author,
+                  image: frontmatter.image
                 },
                 content,
               });
