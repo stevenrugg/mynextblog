@@ -65,7 +65,7 @@ export default function AboutPage() {
         <br/>
         Outside of work and blogging I love hiking, 
         mountaineering, and hanging out with my Cane Corso and Stafforshire Terrier mix named Nipsey Hussle. 
-        He is my best buddy. 
+        He&apos;s my best buddy. 
        
         </p>
       </div>
@@ -76,7 +76,7 @@ export default function AboutPage() {
           height={300}
           width={250}
           alt="Nipsey Hussle"
-          className="ml-20 row-auto mr-2 border border-slate-100"
+          className="row-auto ml-20 mr-2 border border-slate-100"
           ></Image>
           <Image
           src="/images/blog/nipseytwopng.png"

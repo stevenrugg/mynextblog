@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext", "ES2020", "ES2023", "ES2017"],
+    "target": "ES2017",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,6 +24,7 @@
       "#site/components": ["./src/components"],
       "#site/styles": ["./src/styles"],
       "#site/lib": ["./src/lib"],
+      "#site/api": ["./src/api"],
       
     }
   },
@@ -32,6 +34,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "./.velite"
-  ],
+, "src/components/contact.tsx"  ],
   "exclude": ["node_modules"]
 }

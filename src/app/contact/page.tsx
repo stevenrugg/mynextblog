@@ -1,19 +1,13 @@
-import Contact from "@/components/contact";
-import PageHeader from "@/components/page-header";
+import Contact from '@/components/contact'
+import PageHeader from '@/components/page-header';
 
-const ContactPage = () => {
+export default function ContactPage() {
   return (
-    <div>
-      <div className="container max-w-4xl py-3 lg:py-10">
-      
-      <PageHeader
-        title="Contact"
-        description=""
-       />  <hr className="my-2"></hr>
-      </div>
-      <Contact />
+    <>
+   <div className="mx-auto max-w-4xl p-1 text-primary">
+    < PageHeader title="Contact" description="Quick Contact: steven@seattlesupergeek.io -- (206) 973-0748"/>
     </div>
-  );
+    <Contact />
+    </>
+  )
 }
-
-export default ContactPage
