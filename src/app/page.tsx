@@ -20,13 +20,11 @@ interface BlogPost {
     date: string;
     featured: boolean;
   };
-}
-
-
+};
 
 async function fetchPosts(): Promise<BlogPost[]> {
   const res = await fetch('@/app/api/posts');
-  if (!res.ok) 
+  if (!res.ok) {
     throw new Error('Failed to fetch blog posts');
   }
   const posts = await res.json();
