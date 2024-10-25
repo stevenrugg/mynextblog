@@ -34,9 +34,9 @@ async function fetchPosts(): Promise<BlogPost[]> {
 
 
 // eslint-disable-next-line @next/next/no-async-client-component
-export default async function Home() {
+export default  function Home() {
 revalidatePath('src/content/blog'); 
-const posts = await fetchPosts();
+const posts = fetchPosts();
 const featuredPosts = posts.filter((post) => post.frontmatter.featured);
   return (
     <section className="space-y-6 pb-8 md:pb-12 md:pt-10 lg:py-32">
