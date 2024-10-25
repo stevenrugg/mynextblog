@@ -1,4 +1,5 @@
 
+
 import FeatureBlogCard from "@/components/BlogCard";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
@@ -21,8 +22,10 @@ interface BlogPost {
   };
 }
 
+
+
 async function fetchPosts(): Promise<BlogPost[]> {
-  const res = await fetch('../app/api/posts')
+  const res = await fetch('../app/api/posts');
   if (!res.ok) {
     throw new Error('Failed to fetch blog posts');
   }
@@ -34,9 +37,9 @@ async function fetchPosts(): Promise<BlogPost[]> {
 
 
 // eslint-disable-next-line @next/next/no-async-client-component
-export default  function Home() {
+export default async function Home() {
 revalidatePath('src/content/blog'); 
-const posts = fetchPosts();
+const posts = await fetchPosts();
 const featuredPosts = posts.filter((post) => post.frontmatter.featured);
   return (
     <section className="space-y-6 pb-8 md:pb-12 md:pt-10 lg:py-32">
