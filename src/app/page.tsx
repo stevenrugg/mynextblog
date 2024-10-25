@@ -1,4 +1,3 @@
-'use client'
 
 import FeatureBlogCard from "@/components/BlogCard";
 import { buttonVariants } from "@/components/ui/button";
