@@ -23,7 +23,7 @@ interface BlogPost {
 };
 
 async function fetchPosts(): Promise<BlogPost[]> {
-  const res = await fetch('@/app/api/posts');
+  const res = await fetch('/api/posts');
   if (!res.ok) {
     throw new Error('Failed to fetch blog posts');
   }
