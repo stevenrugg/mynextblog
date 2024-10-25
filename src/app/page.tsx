@@ -7,7 +7,7 @@ import { SOCIALS } from "@/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import TypingAnimation from "@/components/TypingAnimation";
-import { revalidatePath } from "next/cache";
+
 
 
 
