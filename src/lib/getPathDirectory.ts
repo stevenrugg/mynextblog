@@ -1,7 +1,7 @@
 import * as fs from 'fs/promises'
 import * as path from 'path'
 
-export const CONTENT_DIRECTORY = path.join(process.cwd(), 'src/content/blog')
+export const CONTENT_DIRECTORY = path.join(process.cwd(), '../content/blog')
 
 /**
  * It takes a path, reads the directory at that path, and returns an array of files that end in .mdx

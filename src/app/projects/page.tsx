@@ -1,6 +1,6 @@
 // app/projects/page.tsx
 import Link from 'next/link';
-import projects from '@/constants/projects'; // Assuming you store the projects data in a separate file.
+import projects from '@/constants/projects'; 
 import Image from 'next/image';
 import PageHeader from '@/components/page-header';
 
