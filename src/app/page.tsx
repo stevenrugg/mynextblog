@@ -23,7 +23,7 @@ interface BlogPost {
 };
 
 async function fetchPosts(): Promise<BlogPost[]> {
-  const res = await fetch('/api/posts');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/posts`);
   if (!res.ok) {
     throw new Error('Failed to fetch blog posts');
   }
@@ -36,7 +36,6 @@ async function fetchPosts(): Promise<BlogPost[]> {
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function Home() {
-revalidatePath('src/content/blog'); 
 const posts = await fetchPosts();
 const featuredPosts = posts.filter((post) => post.frontmatter.featured);
   return (
