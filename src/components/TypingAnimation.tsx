@@ -4,26 +4,28 @@ import { TypeAnimation } from "react-type-animation";
 
 const TypingAnimation = () => {
     return (
+   
     <TypeAnimation
     sequence={[
-      'I am a software engineer',
+      "I'm a software engineer",
       2000,
-      'I am a frontend wizard',
+      "I'm a frontend wizard",
       2000,
-      'I am a graphic artist',
+      "I am a graphic artist",
       2000,
-      'I am a UI/UX engineer',
+      "I'm a UI/UX engineer",
       2000,
-      'I am a unicorn',
+      "I'm a unicorn",
       2000,
-      'I am a geek!',
+      "I'm a geek!",
       2000
     ]}
-    wrapper="span"
+    wrapper="p"
     speed={50}
-    style={{ fontSize: '2em', display: 'inline-block' }}
+    style={{ fontSize: '2em', display: 'inline-block', lineHeight: '1.025' }}
     repeat={Infinity}
-  />   
+    
+  />  
 )
 }
 

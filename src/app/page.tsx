@@ -68,7 +68,7 @@ const featuredPosts = posts.filter((post) => post.frontmatter.featured);
           <Link
             href="/blog"
             className={cn(
-              buttonVariants({ size: "lg", variant: "secondary" }),
+              buttonVariants({ size: "lg", variant: "ghost" }),
               "border",
             )}
           >
