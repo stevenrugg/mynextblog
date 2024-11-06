@@ -11,7 +11,7 @@ const TypingAnimation = () => {
       2000,
       "I'm a frontend wizard",
       2000,
-      "I am a graphic artist",
+      "I'm a graphic artist",
       2000,
       "I'm a UI/UX engineer",
       2000,
