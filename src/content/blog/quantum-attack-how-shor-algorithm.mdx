@@ -12,10 +12,10 @@ Quantum attacks pose one of the most important threats to modern encryption syst
 Quantum computers running Shor's algorithm directly challenge RSA encryption and other widely-used cryptographic systems. This quantum cryptanalysis breakthrough could decode complex numerical problems that are the foundations of today's cybersecurity measures. Scientists continue to develop quantum-resistant algorithms to protect against future quantum attacks.
 Understanding Shor's Algorithm
 
-Mathematician Peter Shor created one of the most important quantum algorithms that bears his name. Shor's Algorithm showcases a groundbreaking advancement in quantum computing and demonstrates exponential speedup compared to classical computing methods [^1]. The algorithm, developed in 1994, could revolutionize cryptanalysis[^2].
+Mathematician Peter Shor created one of the most important quantum algorithms that bears his name. Shor's Algorithm showcases a groundbreaking advancement in quantum computing and demonstrates exponential speedup compared to classical computing methods. The algorithm, developed in 1994, could revolutionize cryptanalysis.
 The mathematical foundation
 
-Shor's Algorithm's core strength comes from knowing how to solve the factoring problem with unprecedented efficiency. Classical computers need exponential time to factor large numbers, but Shor's Algorithm completes this task in polynomial time, specifically O((log N)³) [^1]. Number theory principles and the concept of period-finding in modular arithmetic are the foundations of this approach that transforms the factoring problem into an order-finding challenge[^3].
+Shor's Algorithm's core strength comes from knowing how to solve the factoring problem with unprecedented efficiency. Classical computers need exponential time to factor large numbers, but Shor's Algorithm completes this task in polynomial time, specifically O((log N)³). Number theory principles and the concept of period-finding in modular arithmetic are the foundations of this approach that transforms the factoring problem into an order-finding challenge.
 
 Key mathematical components include:
 
@@ -25,7 +25,7 @@ Key mathematical components include:
 
 ## How it works on quantum computers
 
-Quantum computers run this algorithm through a combination of classical and quantum components[^3]. The quantum part utilizes superposition and interference that makes calculations exponentially faster than classical methods[^2]. A quantum circuit with two registers powers this process, and the first register's size determines how accurate the approximation will be[^4].
+Quantum computers run this algorithm through a combination of classical and quantum components. The quantum part utilizes superposition and interference that makes calculations exponentially faster than classical methods. A quantum circuit with two registers powers this process, and the first register's size determines how accurate the approximation will be.
 
 The quantum implementation needs these key steps:
 
@@ -36,19 +36,19 @@ The quantum implementation needs these key steps:
 
 ## Implications for factoring large numbers
 
-Shor's Algorithm's power to factor large numbers quickly creates major concerns for modern cryptography. The algorithm factors composite number N in polynomial time and works exponentially faster than the most prominent classical algorithms like the General Number Field Sieve[^4]. This speed difference poses a real threat to existing cryptographic systems[^5].
+Shor's Algorithm's power to factor large numbers quickly creates major concerns for modern cryptography. The algorithm factors composite number N in polynomial time and works exponentially faster than the most prominent classical algorithms like the General Number Field Sieve. This speed difference poses a real threat to existing cryptographic systems.
 
-The real-world effects become clear when you see that Shor's Algorithm solves problems in polynomial time that classical computers would need sub-exponential time to process[^4]. Scientists have factored small numbers like [^15] and [^21] successfully[^6]. Yet scaling to bigger numbers remains one of the biggest challenges due to quantum hardware's limitations[^2].
+The real-world effects become clear when you see that Shor's Algorithm solves problems in polynomial time that classical computers would need sub-exponential time to process. Scientists have factored small numbers like 15 and 21 successfully. Yet scaling to bigger numbers remains one of the biggest challenges due to quantum hardware's limitations.
 
-Lab tests showed the algorithm's potential despite current tech limitations. IBM's researchers reached a milestone in 2001 by factoring 15 into 3 × 5 with a seven-qubit quantum computer[^4]. These demonstrations needed specific conditions and still face issues with quantum noise and decoherence[^4].
+Lab tests showed the algorithm's potential despite current tech limitations. IBM's researchers reached a milestone in 2001 by factoring 15 into 3 × 5 with a seven-qubit quantum computer. These demonstrations needed specific conditions and still face issues with quantum noise and decoherence.
 Vulnerabilities in Modern Encryption
 
-Public key cryptography is the life-blood of modern digital security that protects everything from financial transactions to sensitive communications. Classical encryption depends on complex mathematical problems which traditional computers would take billions of years to solve [^7]. This foundation now faces unprecedented challenges in the quantum era.
+Public key cryptography is the life-blood of modern digital security that protects everything from financial transactions to sensitive communications. Classical encryption depends on complex mathematical problems which traditional computers would take billions of years to solve. This foundation now faces unprecedented challenges in the quantum era.
 RSA and public-key cryptography
 
-RSA system, now accessible to more people, uses two large prime numbers to generate private keys. Their product becomes the public key [^8]. This asymmetric approach enables secure communication through public channels and you retain control of private key secrecy [^9]. Quantum computers that use Shor's algorithm could break RSA-2048 bit keys within hours by 2030. The estimated cost stands at $1 billion [^10].
+RSA system, now accessible to more people, uses two large prime numbers to generate private keys. Their product becomes the public key. This asymmetric approach enables secure communication through public channels and you retain control of private key secrecy . Quantum computers that use Shor's algorithm could break RSA-2048 bit keys within hours by 2030. The estimated cost stands at $1 billion.
 
-This security risk creates a "harvest now, decrypt later" scenario. Adversaries can store encrypted data today and decrypt it when quantum computers become powerful enough [^11]. The risk affects:
+This security risk creates a "harvest now, decrypt later" scenario. Adversaries can store encrypted data today and decrypt it when quantum computers become powerful enough. The risk affects:
 
     - Financial transactions and banking systems
     - Government communications
@@ -58,66 +58,68 @@ This security risk creates a "harvest now, decrypt later" scenario. Adversaries 
 
 ## Effects on digital signatures
 
-Quantum computing advances pose serious threats to digital signatures. A threat actor with quantum computing power could perform several dangerous actions. They could forge RSA and ECDSA signatures [^12]. These attackers could issue fake certificates and sign malicious software properly [^12]. They could also recover private keys that would break all other security measures [^12].
+Quantum computing advances pose serious threats to digital signatures. A threat actor with quantum computing power could perform several dangerous actions. They could forge RSA and ECDSA signatures. These attackers could issue fake certificates and sign malicious software properly. They could also recover private keys that would break all other security measures.
 
-Digital signatures would face extensive consequences from such attacks. Attackers could create fraudulent payment instructions, forge identity documents, and help execute account takeover attacks [^10]. This would break the integrity of document signing systems, software distribution, and authentication protocols completely.
+Digital signatures would face extensive consequences from such attacks. Attackers could create fraudulent payment instructions, forge identity documents, and help execute account takeover attacks. This would break the integrity of document signing systems, software distribution, and authentication protocols completely.
 Other affected cryptographic systems
 
-Quantum computing affects many cryptographic protocols beyond RSA. Diffie-Hellman key exchange variants would become vulnerable [^12]. TLS protocol, which powers HTTPS security, has major weaknesses against quantum attacks [^11].
+Quantum computing affects many cryptographic protocols beyond RSA. Diffie-Hellman key exchange variants would become vulnerable. TLS protocol, which powers HTTPS security, has major weaknesses against quantum attacks.
 
-Scientists estimate that breaking modern encryption needs a fault-tolerant quantum computer with about 20 million physical qubits. This computer would need to run for [^8] hours in constant superposition [^13]. Though this quantum computing capability doesn't exist now, cybersecurity teams should prepare for future threats.
+Scientists estimate that breaking modern encryption needs a fault-tolerant quantum computer with about 20 million physical qubits. This computer would need to run for 8 hours in constant superposition. Though this quantum computing capability doesn't exist now, cybersecurity teams should prepare for future threats.
 
 Organizations are learning about several post-quantum cryptography solutions to handle these vulnerabilities:
 
     1. Lattice-based cryptography
     2. Code-based systems
     3. Multivariate polynomial cryptography
-    4. Hash-based signatures [^9]
+    4. Hash-based signatures 
 
-The switch to quantum-resistant algorithms brings new challenges, especially when you have to keep existing systems compatible while protecting against both classical and quantum threats [^14].
+The switch to quantum-resistant algorithms brings new challenges, especially when you have to keep existing systems compatible while protecting against both classical and quantum threats.
 Quantum Computing Progress and Threats
 
-Major technology companies compete to achieve quantum supremacy as the quantum computing world evolves faster. Market analysts expect growth from $928.80 million to $6.50 billion by 2030, with a compound annual growth rate of 32.1% [^15].
+Major technology companies compete to achieve quantum supremacy as the quantum computing world evolves faster. Market analysts expect growth from $928.80 million to $6.50 billion by 2030, with a compound annual growth rate of 32.1%.
 Current state of quantum hardware
 
 Technology companies have made remarkable progress in quantum computer development. The most important companies in this field include:
 
     - IBM with its 433-qubit Osprey machine
     - Google targeting a million qubits by decade's end
-    - D-Wave Systems, IonQ, Rigetti Computing, and others that provide quantum computing services via cloud [^15]
+    - D-Wave Systems, IonQ, Rigetti Computing, and others that provide quantum computing services via cloud
 
-The quantum computing development faces major challenges. High error rates, expensive cooling requirements, and talent shortages create obstacles. McKinsey predicts that companies will fill less than half of quantum jobs by 2025 [^15].
+The quantum computing development faces major challenges. High error rates, expensive cooling requirements, and talent shortages create obstacles. McKinsey predicts that companies will fill less than half of quantum jobs by 2025.
 Timeline for practical implementation
 
-Cryptographically relevant quantum computers (CRQCs) won't become reality until the next decade. Most experts agree that these systems will take until at least the 2030s to develop [^16]. NIST cautions that quantum computing devices could break encryption capabilities within the next decade [^17t].
+Cryptographically relevant quantum computers (CRQCs) won't become reality until the next decade. Most experts agree that these systems will take until at least the 2030s to develop. NIST cautions that quantum computing devices could break encryption capabilities within the next decade.
 
 The development timeline depends on these key factors:
 
     - Hardware stabilization requirements
     - Quantum error correction challenges
     - Resource requirements for commercial applications
-    - Competition from classical computing alternatives [^16]
+    - Competition from classical computing alternatives 
 
 ## 'Harvest now, decrypt later' concerns
 
-The "harvest now, decrypt later" (HNDL) threat poses one of the most important security risks today. Bad actors could collect encrypted data now and decrypt it when quantum computers become powerful enough [^18]. This risk especially affects:
+The "harvest now, decrypt later" (HNDL) threat poses one of the most important security risks today. Bad actors could collect encrypted data now and decrypt it when quantum computers become powerful enough. This risk especially affects:
 
     - Medical records
     - Financial information
     - Commercial research and development
-    - Classified national security information [^16]
+    - Classified national security information
 
-The U.S. National Security Agency warns that "the impact of adversarial use of a quantum computer could be devastating to National Security Systems and our nation" [^16]. Many cybersecurity analysts recognize the HNDL threat, but few say these attacks happen now [^18].
+The U.S. National Security Agency warns that 
+>"the impact of adversarial use of a quantum computer could be devastating to National Security Systems and our nation".
+ Many cybersecurity analysts recognize the HNDL threat, but few say these attacks happen now.
 
-Some incidents point to possible HNDL attacks. Chinese servers mysteriously redirected internet traffic from Canada to South Korea in 2016. Russian networks siphoned data from over 200 networks of major tech companies in 2020 [^18].
+Some incidents point to possible HNDL attacks. Chinese servers mysteriously redirected internet traffic from Canada to South Korea in 2016. Russian networks siphoned data from over 200 networks of major tech companies in 2020.
 
-The financial sector needs quantum-secure systems urgently. Quantum computing could make current encryption methods useless and threaten consumer protection and digital infrastructure's integrity [^17t]. Organizations should understand their risks and plan their move to quantum-readiness instead of guessing when HNDL attacks might happen [^18].
+The financial sector needs quantum-secure systems urgently. Quantum computing could make current encryption methods useless and threaten consumer protection and digital infrastructure's integrity. Organizations should understand their risks and plan their move to quantum-readiness instead of guessing when HNDL attacks might happen.
 Preparing for Post-Quantum Cryptography
 
 Organizations worldwide are preparing for the quantum computing era, and the National Institute of Standards and Technology (NIST) guides the development of standardized defenses against quantum attacks. NIST's complete approach to post-quantum cryptography marks a significant advancement to secure digital infrastructure against future quantum threats.
 NIST's standardization efforts
 
-NIST undertook the task of standardizing post-quantum cryptography in 2016. The project has made the most important advances in choosing quantum-resistant algorithms. Experts from dozens of countries submitted 69 eligible algorithms before the November 2017 deadline [^19]. NIST selected four main algorithms that can withstand quantum computer attacks 20 after several rounds of thorough evaluation.
+NIST undertook the task of standardizing post-quantum cryptography in 2016. The project has made the most important advances in choosing quantum-resistant algorithms. Experts from dozens of countries submitted 69 eligible algorithms before the November 2017 deadline. NIST selected four main algorithms that can withstand quantum computer attacks 20 after several rounds of thorough evaluation.
 
 The standardization process follows a well-laid-out approach:
 
@@ -126,80 +128,55 @@ The standardization process follows a well-laid-out approach:
     - Selection of finalists based on security and performance
     - Draft standards development and publication
 
-NIST published draft standards in 2023 for three of the four selected algorithms. The fourth algorithm (FALCON) will be released in 2024 [^19]. These standards offer detailed technical specifications that help organizations transition to quantum-resistant systems.
+NIST published draft standards in 2023 for three of the four selected algorithms. The fourth algorithm (FALCON) will be released in 2024. These standards offer detailed technical specifications that help organizations transition to quantum-resistant systems.
 Quantum-resistant algorithms
 
 These algorithms showcase different approaches to post-quantum cryptography that serve unique purposes.
 
 ### For General Encryption:
 
-    **CRYSTALS-Kyber**: Creates secure websites and handles general encryption needs [^19]
+    - <span className="text-yellow-500">**CRYSTALS-Kyber**</span>: Creates secure websites and handles general encryption needs
 
 ### For Digital Signatures:
 
-    **CRYSTALS-Dilithium**: Leads digital signature operations
-    **FALCON**: Works best when smaller signatures are needed
-    **SPHINCS+**: Acts as a backup with alternative mathematical methods 20
+    - <span className="text-yellow-500">**CRYSTALS-Dilithium**</span>: Leads digital signature operations
+    - <span className="text-yellow-500">**FALCON**</span>: Works best when smaller signatures are needed
+    - <span className="text-yellow-500">**SPHINCS+**</span>: Acts as a backup with alternative mathematical methods
 
-Both classical and quantum computers struggle to solve the mathematical problems behind these algorithms. This creates a strong defense against future quantum attacks. The security approach varies - three algorithms use structured lattices while SPHINCS+ uses hash functions 20.
+Both classical and quantum computers struggle to solve the mathematical problems behind these algorithms. This creates a strong defense against future quantum attacks. The security approach varies - three algorithms use structured lattices while SPHINCS+ uses hash functions.
 Challenges in transitioning to new systems
 
 Organizations don't deal very well with post-quantum cryptography implementation. The switch to new systems brings several challenges that need proper planning:
 
 ### Technical Constraints:
 
-    - Embedded systems with limited computing power struggle with performance [^21]
-    - Physical attack protection adds to computing costs [^21]
-    - Larger key and ciphertext sizes reduce system efficiency [^22]
+    - Embedded systems with limited computing power struggle with performance
+    - Physical attack protection adds to computing costs
+    - Larger key and ciphertext sizes reduce system efficiency 
 
 ### Organizational Hurdles:
 
-    - Current cryptographic algorithms lack simple replacement options [^22]
-    - Organizations have limited cryptography implementation knowledge [^22]
-    - Vendors aren't ready for quantum-resistant upgrades [^22]
+    - Current cryptographic algorithms lack simple replacement options 
+    - Organizations have limited cryptography implementation knowledge 
+    - Vendors aren't ready for quantum-resistant upgrades 
 
 Organizations need to be proactive to tackle these challenges. Here are the essential preparation steps:
 
-    ### 1. Getting the Full Picture:
-        I. Review cryptographic algorithm thoroughly
-        II. List all systems that use cryptographic protocols
-        III. Check how quantum decryption might affect systems [^23]
+    ### Getting the Full Picture:
+        1. Review cryptographic algorithm thoroughly
+        2. List all systems that use cryptographic protocols
+        3. Check how quantum decryption might affect systems 
 
-    ### 2. Smart Planning:
-        I. Create detailed transition roadmaps
-        II. Set up flexible cryptographic protocols
-        III. Build unified policies for algorithm replacement [^22]
+    ### Smart Planning:
+        1. Create detailed transition roadmaps
+        2. Set up flexible cryptographic protocols
+        3. Build unified policies for algorithm replacement
 
-Mixing quantum-resistant algorithms with classical cryptography adds more complexity. Teams need careful design and implementation to ensure resilient security during the transition [^21]. Different regions have varying certification requirements that affect implementation schedules [^21].
+Mixing quantum-resistant algorithms with classical cryptography adds more complexity. Teams need careful design and implementation to ensure resilient security during the transition. Different regions have varying certification requirements that affect implementation schedules.
 
-Experts suggest creating a crypto center of excellence (CCOE) to manage this transition smoothly [^22]. This central team helps organizations keep consistent policies, track important metadata about algorithm usage, and support development teams with needed expertise.
+Experts suggest creating a crypto center of excellence (CCOE) to manage this transition smoothly. This central team helps organizations keep consistent policies, track important metadata about algorithm usage, and support development teams with needed expertise.
 Conclusion
 
 Quantum computing's progress creates a unique challenge to modern cryptographic systems. Shor's Algorithm emerges as a powerful tool that can break encryption methods accessible to more people. Many organizations face a harsh reality. Their security measures, especially RSA-based systems, might become useless in the next decade. The "harvest now, decrypt later" threat makes this challenge more urgent because malicious actors could collect encrypted data now and decrypt it later when quantum computers become powerful enough.
 
-NIST's standardization efforts and quantum-resistant algorithms development give hope to maintain digital security in the quantum era. The cybersecurity community leads these initiatives actively. Organizations should take decisive action by getting a full picture of their cryptographic status and creating complete transition plans to quantum-resistant systems. This vital transformation needs a balance between technical requirements and organizational readiness while operations remain efficient during the transition.
-References
-
-[1] - https://www.quera.com/glossary/shors-algorithm
-[2] - https://www.ibm.com/quantum/blog/factor-15-shors-algorithm
-[3] - https://web.eecs.umich.edu/~aveliche/PDFs/RC_paper.pdf
-[4] - https://en.wikipedia.org/wiki/Shor%27s_algorithm
-[5] - https://www.classiq.io/insights/shors-algorithm-explained
-[6] - https://www.math.mcgill.ca/darmon/courses/12-13/nt/projects/Fangxi-Lin.pdf
-[7] - https://www.forbes.com/councils/forbestechcouncil/2023/05/04/quantum-computers-could-make-todays-encryption-defenseless/
-[8] - https://scienceexchange.caltech.edu/topics/quantum-science-explained/quantum-cryptography
-[9] - https://www.infoq.com/articles/post-quantum-cryptography-introduction/
-[10] - https://eprint.iacr.org/2019/1374.pdf
-[11] - https://epjquantumtechnology.springeropen.com/articles/10.1140/epjqt/s40507-021-00104-z
-[12] - https://nap.nationalacademies.org/read/25196/chapter/6
-[13] - https://arstechnica.com/information-technology/2023/01/fear-not-rsa-encryption-wont-fall-to-quantum-computing-anytime-soon/
-[14] - https://www.ncsc.gov.uk/whitepaper/next-steps-preparing-for-post-quantum-cryptography
-[15] - https://mitsloan.mit.edu/ideas-made-to-matter/quantum-computing-what-leaders-need-to-know-now
-[16] - https://www.rand.org/pubs/commentary/2023/09/when-a-quantum-computer-is-able-to-break-our-encryption.html
-[17] - https://www.weforum.org/stories/2024/08/us-tools-encryption-breaking-quantum-computing-nist/
-[18] - https://www.techmonitor.ai/quantum/harvest-now-decrypt-later-cyberattack-quantum-computer/
-[19] - https://www.nist.gov/news-events/news/2023/08/nist-standardize-encryption-algorithms-can-resist-attack-quantum-computers
-[20] - https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms
-[21] - https://www.secure-ic.com/blog/overcoming-challenges-in-the-integration-of-post-quantum-cryptography/
-[22] - https://www.gartner.com/en/articles/post-quantum-cryptography
-[23] - https://www.forbes.com/councils/forbestechcouncil/2024/05/07/future-proof-encryption-embracing-post-quantum-cryptography-for-quantum-resilient-solutions/
+ 
