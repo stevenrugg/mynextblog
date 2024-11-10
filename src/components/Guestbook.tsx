@@ -3,7 +3,7 @@
 // app/guestbook/Guestbook.tsx
 import React, { useState, useEffect } from 'react';
 import { Session } from 'next-auth';
-import { signIn, auth } from '@/app/auth';
+import { signIn } from '@/app/auth';
 
 
 export default function Guestbook() {
@@ -11,11 +11,11 @@ export default function Guestbook() {
 
   useEffect(() => {
     async function fetchSession() {
-      const session = await auth();
+     
       setSession(session);
     }
     fetchSession();
-  }, []);
+  }, [session]);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<{ id: string; name: string; message: string }[]>([]);
