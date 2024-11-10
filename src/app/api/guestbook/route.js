@@ -1,10 +1,10 @@
 // pages/api/guestbook.ts
-import { NextApiRequest, NextApiResponse } from 'next';
+
 import { auth } from '@/app/auth';
 import { guestbookSchema } from '@/lib/validationSchemas';
 import prisma from '@/lib/prisma';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req, res) {
   const session = await auth();
   if (!session) return res.status(401).json({ error: 'Unauthorized' });
 
@@ -17,11 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
       res.json(newMessage);
     } catch (error) {
-      if (error instanceof Error) {
-        res.status(400).json({ error: (error as any).errors || 'Invalid input' });
-      } else {
-        res.status(400).json({ error: 'Invalid input' });
-      }
+      res.status(400).json({ error: error.errors || 'Invalid input' });
     }
   } else if (req.method === 'GET') {
     const messages = await prisma.guestbook.findMany({
