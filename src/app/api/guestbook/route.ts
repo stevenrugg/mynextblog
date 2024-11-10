@@ -1,11 +1,12 @@
 // src/app/api/guestbook/route.ts
-import { NextResponse } from 'next/server';
+
 import { auth } from '@/app/auth' 
+import { NextResponse } from 'next/server';
 import { guestbookSchema } from '@/lib/validationSchemas';
 import prisma from '@/lib/prisma';
 
 // POST /api/guestbook - Adds a new guestbook message
-export async function POST(req: Request) {
+export async function POST(res: Response, req: Request) {
   const session = await auth()
   
   if (!session) {
