@@ -7,6 +7,7 @@ import { SOCIALS } from "@/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import TypingAnimation from "@/components/TypingAnimation";
+import { revalidatePath } from "next/cache";
 
 
 
@@ -23,7 +24,9 @@ interface BlogPost {
 };
 
 async function fetchPosts(): Promise<BlogPost[]> {
+  
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/posts`);
+  
   if (!res.ok) {
     throw new Error('Failed to fetch blog posts');
   }
@@ -39,7 +42,7 @@ export default async function Home() {
 const posts = await fetchPosts();
 const featuredPosts = posts.filter((post) => post.frontmatter.featured);
   return (
-    <section className="space-y-6 pb-8 md:pb-12 md:pt-10 lg:py-32">
+    <section className="space-y-6 pb-8 md:pb-12 md:pt-10 lg:py-8">
       <div className="container mt-6 flex max-w-5xl flex-col items-center gap-4 text-center xl:mt-0">
         <div className="flex items-center space-x-2">
           {SOCIALS.map((social) => (
@@ -77,6 +80,7 @@ const featuredPosts = posts.filter((post) => post.frontmatter.featured);
         </div>
     
         <FeatureBlogCard featuredPosts={featuredPosts} />
+        
        
       </div>
     </section>

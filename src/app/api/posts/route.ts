@@ -5,6 +5,8 @@ import * as path from 'path';
 import matter from 'gray-matter';
 
 
+
+
 interface BlogPost {
   slug: string;
   frontmatter: {
@@ -17,7 +19,9 @@ interface BlogPost {
 
 // API route to fetch blog posts
 export async function GET() {
+  
   const directory = path.join(process.cwd(), 'src/content/blog');
+  
   const files = fs.readdirSync(directory);
 
   const posts: BlogPost[] = files
@@ -26,7 +30,7 @@ export async function GET() {
       const filePath = path.join(directory, file);
       const fileContents = fs.readFileSync(filePath, 'utf-8');
       const { data: frontmatter } = matter(fileContents);
-      
+    
       return {
         slug: file.replace('.mdx', ''),
         frontmatter: {

@@ -9,7 +9,7 @@ export const siteConfig = {
     github: "https://github.com/stevenrugg",
     twitter: "https://twitter.com/stevensupergeek",
     facebook: "https://facebook.com/stevenrugg",
-    linkedin: "https//linkedin/in/stevenwrugg"
+    linkedin: "https://linkedin/in/stevenwrugg"
   },
 };
 
