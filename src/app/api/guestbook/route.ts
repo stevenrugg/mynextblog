@@ -6,7 +6,7 @@ import { guestbookSchema } from '@/lib/validationSchemas';
 import prisma from '@/lib/prisma';
 
 // POST /api/guestbook - Adds a new guestbook message
-export async function POST(res: Response, req: Request) {
+export async function POST(req: Request) {
   const session = await auth()
   
   if (!session) {
