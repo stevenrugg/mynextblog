@@ -7,11 +7,14 @@ import { SOCIALS } from "@/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import TypingAnimation from "@/components/TypingAnimation";
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> c6343c39519c7e63bbacb65c4ea5ea47ae694066
 
 interface BlogPost {
   slug: string;

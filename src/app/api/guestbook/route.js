@@ -4,7 +4,11 @@ import { auth } from '@/app/auth';
 import { guestbookSchema } from '@/lib/validationSchemas';
 import prisma from '@/lib/prisma';
 
+<<<<<<< HEAD:src/app/api/guestbook/route.js
 export default async function handler(req, res) {
+=======
+export default async function handleAuth(req: NextApiRequest, res: NextApiResponse) {
+>>>>>>> c6343c39519c7e63bbacb65c4ea5ea47ae694066:src/app/api/guestbook/route.ts
   const session = await auth();
   if (!session) return res.status(401).json({ error: 'Unauthorized' });
 
