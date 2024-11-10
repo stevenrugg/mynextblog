@@ -4,7 +4,7 @@ import { auth } from '@/app/auth';
 import { guestbookSchema } from '@/lib/validationSchemas';
 import prisma from '@/lib/prisma';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handleAuth(req: NextApiRequest, res: NextApiResponse) {
   const session = await auth();
   if (!session) return res.status(401).json({ error: 'Unauthorized' });
 
