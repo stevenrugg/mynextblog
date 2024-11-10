@@ -1,13 +1,13 @@
 // src/app/api/guestbook/route.ts
 
-import { auth } from '@/app/auth' 
+import { middleware } from '@/app/middleware' 
 import { NextResponse } from 'next/server';
 import { guestbookSchema } from '@/lib/validationSchemas';
 import prisma from '@/lib/prisma';
 
 // POST /api/guestbook - Adds a new guestbook message
 export async function POST(req: Request) {
-  const session = await auth()
+  const session = await middleware();
   
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
