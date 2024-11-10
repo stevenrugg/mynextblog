@@ -3,7 +3,8 @@
 // app/guestbook/Guestbook.tsx
 import React, { useState, useEffect } from 'react';
 import { Session } from 'next-auth';
-import { signIn } from '@/app/auth';
+import { signIn } from 'next-auth/react';
+
 
 
 export default function Guestbook() {
