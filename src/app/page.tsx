@@ -8,11 +8,6 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import TypingAnimation from "@/components/TypingAnimation";
 
-
-
-
-
-
 interface BlogPost {
   slug: string;
   frontmatter: {
