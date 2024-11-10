@@ -34,6 +34,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "./.velite"
-, "src/components/contact.tsx", "src/app/api/auth/[...nextauth]/route.js"  ],
+, "src/components/contact.tsx", "src/app/api/auth/[...nextauth]/route.ts"  ],
   "exclude": ["node_modules"]
 }
