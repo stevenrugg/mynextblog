@@ -10,18 +10,8 @@ import { signIn } from '../../auth';
 export default function Guestbook() {
   
  
- const { data: session, status } = useSession();
-  useEffect(() => {
-    async function fetchSession() {
-     
-      const res = await fetch('/api/auth/session');
-     return res.json();
-      
-     
-   
-    }
-    fetchSession();
-  }, [session, status]);
+ const { data: session } = useSession();
+ 
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
