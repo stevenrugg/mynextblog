@@ -2,21 +2,25 @@
 
 // app/guestbook/Guestbook.tsx
 import React, { useState, useEffect } from 'react';
-import { Session } from 'next-auth';
-import { signIn } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import { signIn } from '../../auth';
 
 
 
 export default function Guestbook() {
-  const [session, setSession] = useState<Session | null>(null);
+  const { data: session, status } = useSession();
+ 
 
   useEffect(() => {
     async function fetchSession() {
+      const res = await fetch('/api/auth/session');
+     return res.json();
+      
      
-      setSession(session);
+   
     }
     fetchSession();
-  }, [session]);
+  }, [session, status]);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<{ id: string; name: string; message: string }[]>([]);
