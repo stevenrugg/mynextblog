@@ -7,7 +7,7 @@ import { guestbookSchema } from '@/lib/validationSchemas'; // adjust path as nee
 
 
 export default function Guestbook() {
-  const { data: session } = useSession();
+  const session = useSession();
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
