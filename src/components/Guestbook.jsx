@@ -2,15 +2,14 @@
 
 // app/guestbook/Guestbook.tsx
 import React, { useState, useEffect } from 'react';
-import { getSession } from 'next-auth/react';
-import { signIn } from '../../auth';
+import { signIn, auth } from '../../auth';
 
 
 
 export default function Guestbook() {
   
  
- const session = getSession();
+ const { data: session } = auth();
  
  
   const [name, setName] = useState('');
