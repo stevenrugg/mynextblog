@@ -1,14 +1,13 @@
 // src/app/api/guestbook/route.ts
 
-import  { Session } from 'next-auth';
-import { authOptions } from '../../../../auth'
+import  { getSession } from 'next-auth/react';
 import { NextResponse } from 'next/server';
 import { guestbookSchema } from '@/lib/validationSchemas';
 import prisma from '@/lib/prisma';
 
 // POST /api/guestbook - Adds a new guestbook message
 export async function POST(req: Request) {
-  const session = Session()
+  const session = getSession()
   
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
