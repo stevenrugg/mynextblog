@@ -1,5 +1,5 @@
 
-import { NextAuth } from 'next-auth'
+
 import { handlers } from '../../../../../auth'
-const handler = NextAuth(handlers)
+const handler = handlers
 export { handler as GET, handler as POST}
