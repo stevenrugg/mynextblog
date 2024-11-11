@@ -1,13 +1,13 @@
 // src/app/api/guestbook/route.ts
-
-import  { getSession } from 'next-auth/react';
 import { NextResponse } from 'next/server';
+import getServerSession  from 'next-auth';
+import { authOptions } from '../../../../auth'; // Adjust this path to your auth options file
 import { guestbookSchema } from '@/lib/validationSchemas';
 import prisma from '@/lib/prisma';
 
 // POST /api/guestbook - Adds a new guestbook message
 export async function POST(req: Request) {
-  const session = getSession()
+  const session = getServerSession(authOptions);
   
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     return NextResponse.json(newMessage);
   } catch (error: any) {
     return NextResponse.json(
-      { error: error.errors || 'Invalid input' },
+      { error: error?.errors || 'Invalid input' },
       { status: 400 }
     );
   }
