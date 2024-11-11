@@ -1,9 +1,12 @@
 import NextAuth from "next-auth"
-import GitHub from "next-auth/providers/github"
+import GitHubProvider from "next-auth/providers/github"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
-    GitHub
+    GitHubProvider({
+      clientId: process.env.NEXTAUTH_GITHUB_CLIENT_ID,
+      clientSecret: process.env.NEXTAUTH_GITHUB_CLIENT_SECRET
+    })
   ],
   experimental: { enableWebAuthn: true },
   callbacks: {
@@ -15,7 +18,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 })
 
 export const authOptions = {
-  providers: [GitHub],
+  providers: [
+    GitHubProvider({
+      clientId: process.env.NEXTAUTH_GITHUB_CLIENT_ID,
+      clientSecret: process.env.NEXTAUTH_GITHUB_CLIENT_SECRET
+    })
+  ],
   experimental: { enableWebAuthn: true },
   callbacks: {
     async session({ session, token }: { session: any, token: any }) {
