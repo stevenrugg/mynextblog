@@ -65,14 +65,14 @@ export default function Guestbook() {
               onChange={(e) => setName(e.target.value)}
               placeholder="Your name"
               required
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Your message"
               required
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               rows={4}
             />
             <button
