@@ -10,7 +10,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   experimental: { enableWebAuthn: true },
   callbacks: {
-    async session({ session, token }: { session: any, token: any }) {
+    async session({ session, token }) {
       session.userId = token.sub ?? "";
       return session;
     },
@@ -26,7 +26,7 @@ export const authOptions = {
   ],
   experimental: { enableWebAuthn: true },
   callbacks: {
-    async session({ session, token }: { session: any, token: any }) {
+    async session({ session, token }) {
       session.userId = token.sub ?? "";
       return session;
     },
