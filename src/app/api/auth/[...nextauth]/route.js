@@ -1,4 +1,5 @@
 
-import { handlers, auth } from '../../../../../auth'
-const handler = auth(handlers)
+import NextAuth from 'next-auth'
+import { handlers } from '../../../../../auth'
+const handler = NextAuth(handlers)
 export { handler as GET, handler as POST}
