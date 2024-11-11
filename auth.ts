@@ -3,7 +3,7 @@ import GitHub from "next-auth/providers/github"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
-    GitHub({ clientId: process.env.NEXTAUTH_GITHUB_CLIENT_ID, clientSecret: process.env.NEXTAUTH_GITHUB_CLIENT_SECRET }),
+    GitHub
   ],
   experimental: { enableWebAuthn: true },
   callbacks: {
