@@ -8,11 +8,12 @@ import { signIn } from '../../auth';
 
 
 export default function Guestbook() {
-  const { data: session, status } = useSession();
+  
  
-
+ const { data: session, status } = useSession();
   useEffect(() => {
     async function fetchSession() {
+     
       const res = await fetch('/api/auth/session');
      return res.json();
       
@@ -23,7 +24,7 @@ export default function Guestbook() {
   }, [session, status]);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<{ id: string; name: string; message: string }[]>([]);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     if (session) {
@@ -36,7 +37,7 @@ export default function Guestbook() {
     }
   }, [session]);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const res = await fetch('/api/guestbook', {
       method: 'POST',
