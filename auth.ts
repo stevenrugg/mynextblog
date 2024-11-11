@@ -15,9 +15,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 })
 
 export const authOptions = {
-  providers: [
-    GitHub({ clientId: process.env.NEXTAUTH_GITHUB_CLIENT_ID, clientSecret: process.env.NEXTAUTH_GITHUB_CLIENT_SECRET }),
-  ],
+  providers: [GitHub],
   experimental: { enableWebAuthn: true },
   callbacks: {
     async session({ session, token }: { session: any, token: any }) {
