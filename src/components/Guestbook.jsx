@@ -1,3 +1,4 @@
+'use client'
 // app/guestbook/Guestbook.tsx
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
