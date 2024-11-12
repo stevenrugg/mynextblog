@@ -21,7 +21,7 @@
     "mailerlite": "^0.4.0",
     "mailersend": "^2.3.0",
     "next": "14.2.3",
-    "next-auth": "4.24.10",
+    "next-auth": "^4.24.10",
     "nodemailer": "^6.9.15",
     "path": "^0.12.7",
     "react": "^18",

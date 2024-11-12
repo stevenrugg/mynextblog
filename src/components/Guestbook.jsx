@@ -7,7 +7,7 @@ import { guestbookSchema } from '@/lib/validationSchemas'; // adjust path as nee
 
 
 export default function Guestbook() {
-  const session = useSession();
+  const { data: session } = useSession();
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
@@ -37,7 +37,7 @@ export default function Guestbook() {
 
     const res = await fetch('/api/guestbook', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ name, message }),
     });
     if (res.ok) {

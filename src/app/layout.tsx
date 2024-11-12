@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Lexend } from "next/font/google";
@@ -5,6 +6,9 @@ import "@/styles/globals.css";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import App from "@/components/app";
+import { SessionProvider } from 'next-auth/react'
+
+
 
 const lexend = Lexend({ subsets: ["latin"], variable: "--font-lexend" });
 
@@ -21,11 +25,13 @@ const fontCode = localFont({
 });
 
 export default function RootLayout({
+
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
   return (
+    
     <html lang="en" className="dark">
       <body
         className={cn(
@@ -34,8 +40,12 @@ export default function RootLayout({
           fontCode.variable,
         )}
       >
+        <SessionProvider>
         <App>{children}</App>
+         </SessionProvider>
       </body>
     </html>
+     
   );
+  
 }

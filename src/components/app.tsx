@@ -3,8 +3,10 @@ import SiteHeader from "@/components/site-header";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 
+
 export default function App({ children }: PropsWithChildren) {
   return (
+    
     <div className="flex min-h-dvh flex-col space-y-6">
       <SiteHeader />
       <main className="container flex-1">{children}</main>
@@ -15,12 +17,13 @@ export default function App({ children }: PropsWithChildren) {
             target="_blank"
             rel="noreferrer"
             href={siteConfig.social.github}
-            className="text-primary"
+            className="text-lg text-primary"
           >
             {siteConfig.author}
           </Link>{" "}
         </p>
       </footer>
     </div>
+   
   );
 }
