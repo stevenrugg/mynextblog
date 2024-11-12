@@ -2,7 +2,7 @@ import PageHeader from "@/components/page-header";
 import Guestbook from "@/components/Guestbook";
 
 
-
+export const dynamic = "force-dynamic";
 export default function GuestbookPage() {
   
 
