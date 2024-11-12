@@ -6,7 +6,6 @@ import "@/styles/globals.css";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import App from "@/components/app";
-import { SessionProvider } from 'next-auth/react'
 
 
 
@@ -40,9 +39,9 @@ export default function RootLayout({
           fontCode.variable,
         )}
       >
-        <SessionProvider>
+        
         <App>{children}</App>
-         </SessionProvider>
+         
       </body>
     </html>
      
