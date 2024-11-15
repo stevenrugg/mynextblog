@@ -1,39 +1,38 @@
-// src/app/api/guestbook/route.ts
+// app/api/guestbook/route.ts
 import { NextResponse } from 'next/server';
-import getServerSession  from 'next-auth';
-import {authOptions} from '../../../lib/authOptions';
-import { guestbookSchema } from '@/lib/validationSchemas';
-import prisma from '@/lib/prisma';
+import  prisma  from '@/lib/prisma';  // import Prisma client
+import { z } from 'zod';
 
-// POST /api/guestbook - Adds a new guestbook message
+const guestbookSchema = z.object({
+  name: z.string().min(3),
+  message: z.string().min(10),
+});
+
 export async function POST(req: Request) {
-  const { data: session } = getServerSession(authOptions);
-  
-  if (!session) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
   try {
-    const data = await req.json();
-    const validatedData = guestbookSchema.parse(data);
+    // Parse the incoming request body
+    const body = await req.json();
+    const parsed = guestbookSchema.parse(body);
 
-    const newMessage = await prisma.guestbook.create({
-      data: validatedData,
+    // Create a new guestbook entry in the database
+   const newEntry = await prisma.guestbook.create({
+      data: {
+        name: parsed.name,
+        message: parsed.message,
+      },
     });
 
-    return NextResponse.json(newMessage);
-  } catch (error: any) {
-    return NextResponse.json(
-      { error: error?.errors || 'Invalid input' },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: 'Entry successfully added!', entry: newEntry });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: 'Invalid input or failed to save' }, { status: 400 });
   }
 }
 
-// GET /api/guestbook - Retrieves guestbook messages
 export async function GET() {
-  const messages = await prisma.guestbook.findMany({
+  const entries = await prisma.guestbook.findMany({
     orderBy: { createdAt: 'desc' },
   });
-  return NextResponse.json(messages);
+
+  return NextResponse.json(entries);
 }

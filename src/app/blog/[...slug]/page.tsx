@@ -43,6 +43,7 @@ export async function generateMetadata({
     authors: {
       name: blog.author,
     },
+    
   };
 }
 
@@ -67,7 +68,7 @@ export default async function BlogPageItem({ params }: BlogPageItemProps) {
         {blog.date && (
           <time
             dateTime={blog.date}
-            className="block text-sm text-yellow-500"
+            className="block text-sm text-muted-foreground"
           >
             Published on {formatDate(blog.date)}
           </time>

@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext", "ES2020", "ES2023", "ES2017"],
-    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,12 +19,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "#site/content": ["./.velite"],
-      "#site/components": ["./src/components"],
-      "#site/styles": ["./src/styles"],
-      "#site/lib": ["./src/lib"],
-      "#site/api": ["./src/api"],
-      
+      "#site/content": ["./.velite"]
     }
   },
   "include": [
@@ -34,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "./.velite"
-, "src/components/contact.tsx", "src/app/api/auth/[...nextauth]/[...nextauth].ts", "src/components/Guestbook.jsx", "auth.ts", "src/app/api/auth/[...nextauth]/route.ts"  ],
+  ],
   "exclude": ["node_modules"]
 }

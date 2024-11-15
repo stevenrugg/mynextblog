@@ -18,7 +18,7 @@ export default function BlogPage() {
     <div className="container max-w-4xl py-6 lg:py-10">
       <PageHeader
         title="Blog"
-        description="Learn and explore the world of frontend development, quantum computing, and technology trends through educational content designed to empower and inspire innovation."
+        description="A blog using velite. Posts are written in MDX"
       />
       <hr className="my-8" />
 
@@ -27,7 +27,7 @@ export default function BlogPage() {
           {blogs.map((blog) => (
             <article
               key={blog.slug}
-              className="group relative flex flex-col space-y-2 bg-secondary"
+              className="group relative flex flex-col space-y-2"
             >
               {blog.image && (
                 <Image
@@ -35,24 +35,25 @@ export default function BlogPage() {
                   alt={blog.title}
                   width={804}
                   height={452}
-                  className="border bg-muted transition-colors hover:shadow-violet-600 dark:hover:shadow-violet-600"
+                  className="border bg-muted transition-colors"
                 />
               )}
 
-              <h2 className="p-2 text-2xl font-extrabold text-primary">
+              <h2 className="text-2xl font-extrabold text-primary">
                 {blog.title}
               </h2>
               {blog.description && (
-                <p className="p-2 text-muted-foreground">{blog.description}</p>
+                <p className="text-muted-foreground">{blog.description}</p>
               )}
 
               {blog.date && (
-                <p className="mb-2 text-pretty px-2 pb-3 text-left text-sm text-yellow-500">
+                <p className="text-sm text-muted-foreground">
                   {formatDate(blog.date)}
                 </p>
               )}
+            
 
-              <Link href={blog.slug} className="absolute inset-0 text-slate-200">
+              <Link href={blog.slug} className="absolute inset-0">
                 <span className="sr-only">View Article</span>
               </Link>
             </article>

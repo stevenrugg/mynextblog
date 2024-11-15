@@ -6,6 +6,9 @@ import "@/styles/globals.css";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import App from "@/components/app";
+import { UserProvider } from '@auth0/nextjs-auth0/client'
+
+
 
 
 
@@ -32,6 +35,7 @@ export default function RootLayout({
   return (
     
     <html lang="en" className="dark">
+      <UserProvider>
       <body
         className={cn(
           "min-h-screen antialiased font-lexend bg-background",
@@ -43,6 +47,7 @@ export default function RootLayout({
         <App>{children}</App>
          
       </body>
+      </UserProvider>
     </html>
      
   );

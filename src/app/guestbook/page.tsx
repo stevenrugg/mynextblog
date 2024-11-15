@@ -1,19 +1,28 @@
-import PageHeader from "@/components/page-header"; 
-import Guestbook from "@/components/Guestbook";
+// app/guestbook/page.tsx
+'use client';
 
+import{ useUser } from '@auth0/nextjs-auth0/client';
+import Guestbook from '@/components/Guestbook';
 
-export const dynamic = "force-dynamic";
-export default function GuestbookPage() {
-  
+function GuestbookPage () {
+  const { user, isLoading } = useUser();
+
+  if (isLoading) return(`<p>Loading...</p>`);
+
+  if (!user) {
+    return (
+      <div className="text-center">
+        <p>You must be logged in to access the guestbook.</p>
+        <a href="/api/auth/login" className="text-blue-500 hover:underline">Login</a>
+      </div>
+    );
+  }
 
   return (
-  
-    <div className="mx-auto max-w-4xl p-3 ">
-      <PageHeader title="Guestbook" description="Sign my guestbook and leave me a comment, say hello or just 'I was here!'" />
-     
+    <div className="container mx-auto p-8">
       <Guestbook />
-     
     </div>
   );
-}
+};
 
+export default GuestbookPage;
