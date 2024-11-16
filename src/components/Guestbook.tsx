@@ -27,7 +27,7 @@ const Guestbook = () => {
   // Fetch existing guestbook entries on mount
   useEffect(() => {
     const fetchEntries = async () => {
-      const res = await fetch('/api/guestbook/', {
+      const res = await fetch('https://seattlesupergeek.io/api/guestbook/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const Guestbook = () => {
   const onSubmit = async (data: GuestbookForm) => {
     setStatus('Submitting...');
     try {
-      const res = await fetch('/api/guestbook', {
+      const res = await fetch('https://seattlesupergeek.io/api/guestbook', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

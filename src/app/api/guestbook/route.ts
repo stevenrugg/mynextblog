@@ -1,4 +1,4 @@
-// app/api/guestbook/route.ts
+// app/agr/guestbook/route.ts
 import { NextResponse } from 'next/server';
 import  prisma  from '@/lib/prisma';  // import Prisma client
 import { z } from 'zod';
