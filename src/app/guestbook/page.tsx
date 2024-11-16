@@ -3,7 +3,7 @@
 
 import{ useUser } from '@auth0/nextjs-auth0/client';
 import Guestbook from '@/components/Guestbook';
-import useRouter from 'next/navigation';import Link from 'next/link';
+import Link from 'next/link';
 
 
 
