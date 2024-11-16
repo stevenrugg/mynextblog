@@ -3,7 +3,7 @@
 
 import{ useUser } from '@auth0/nextjs-auth0/client';
 import Guestbook from '@/components/Guestbook';
-import Link from 'next/link';
+
 
 
 
@@ -17,7 +17,7 @@ function GuestbookPage () {
     return (
       <div className="text-center">
         <p>You must be logged in to access the guestbook.</p>
-        <Link href='../../api/auth/login' className="text-blue-500 hover:underline">Login</Link>
+        <a href='../api/auth/login' className="text-blue-500 hover:underline">Login</a>
       </div>
     );
   }
