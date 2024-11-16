@@ -1,4 +1,8 @@
+'use client'
+
 // components/Guestbook.tsx
+
+
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,7 +27,12 @@ const Guestbook = () => {
   // Fetch existing guestbook entries on mount
   useEffect(() => {
     const fetchEntries = async () => {
-      const res = await fetch('/api/guestbook/');
+      const res = await fetch('/api/guestbook/', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       const data = await res.json();
       setEntries(data);
     };

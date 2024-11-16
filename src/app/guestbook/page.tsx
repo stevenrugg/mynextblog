@@ -17,7 +17,7 @@ function GuestbookPage () {
     return (
       <div className="text-center">
         <p>You must be logged in to access the guestbook.</p>
-        <Link href='api/auth/login' className="text-blue-500 hover:underline">Login</Link>
+        <Link href='../../api/auth/login' className="text-blue-500 hover:underline">Login</Link>
       </div>
     );
   }
