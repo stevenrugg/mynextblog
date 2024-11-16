@@ -1,120 +1,91 @@
-'use client'
-
-// components/Guestbook.tsx
-
-
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import React, { useState, useEffect } from 'react';
 import { z } from 'zod';
-import PageHeader from './page-header';
 
-const guestbookSchema = z.object({
-  name: z.string().min(3, { message: 'Name must be at least 3 characters long' }),
-  message: z.string().min(10, { message: 'Message must be at least 2 characters long' }),
-});
+const Guestbook: React.FC = () => {
+  const [messages, setMessages] = useState([]);
+  const [formData, setFormData] = useState({ name: '', message: '' });
+  const [error, setError] = useState('');
 
-type GuestbookForm = z.infer<typeof guestbookSchema>;
-
-const Guestbook = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<GuestbookForm>({
-    resolver: zodResolver(guestbookSchema),
-  });
-
-  const [status, setStatus] = useState<string | null>(null);
-  const [entries, setEntries] = useState<any[]>([]);
-
-  // Fetch existing guestbook entries on mount
   useEffect(() => {
-    const fetchEntries = async () => {
-      const res = await fetch('https://seattlesupergeek.io/api/guestbook/', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+    const fetchMessages = async () => {
+      const res = await fetch('/api/guestbook');
       const data = await res.json();
-      setEntries(data);
+      setMessages(data);
     };
-
-    fetchEntries();
+    fetchMessages();
   }, []);
 
-  const onSubmit = async (data: GuestbookForm) => {
-    setStatus('Submitting...');
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+
+    const schema = z.object({
+      name: z.string().min(1).max(50),
+      message: z.string().min(1).max(200),
+    });
+
     try {
-      const res = await fetch('https://seattlesupergeek.io/api/guestbook', {
+      schema.parse(formData);
+      await fetch('/api/guestbook', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-      if (res.ok) {
-        setStatus('Message submitted!');
-        const newEntry = await res.json();
-        setEntries([newEntry.entry, ...entries]); // Add the new entry to the top
-      } else {
-        setStatus('Error submitting message.');
-      }
-    } catch (error) {
-      setStatus('Error submitting message.');
+
+      setFormData({ name: '', message: '' });
+      const res = await fetch('/api/guestbook');
+      setMessages(await res.json());
+    } catch (err: any) {
+      setError(err.errors?.[0]?.message || 'Invalid input');
     }
   };
 
   return (
-    <>
-    <PageHeader title="Guestbook" description="Sign the guestbook, leave a comment or just say 'I was here'."></PageHeader>
-    <div className="flex md:flex-row flex-col gap-8 p-8">
-      {/* Form Section (Right) */}
-      <div className="bg-secondary shadow-lg p-6 rounded-lg w-full md:w-1/3">
-        <h2 className="mb-4 font-semibold text-slate-100 text-xl">Sign the Guestbook</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-4">
-            <label htmlFor="name" className="block font-medium text-slate-100 text-sm">Name</label>
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Form Section */}
+        <div className="lg:w-1/2">
+          <h2 className="text-2xl font-bold mb-4">Sign the Guestbook</h2>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <input
-              id="name"
-              {...register('name')}
-              className="border-slate-300 mt-2 p-2 border rounded-md focus:ring-2 focus:ring-blue-400 w-full text-slate-800 focus:outline-none"
+                type="text"
+                placeholder="Your name"
+                value={formData.name}
+                onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                }
+                className="border rounded-md p-2 w-full"
             />
-            {errors.name && <p className="mt-1 text-red-500 text-xs">{errors.name.message}</p>}
-          </div>
-          <div className="mb-4">
-            <label htmlFor="message" className="block font-medium text-slate-200 text-sm">Message</label>
             <textarea
-              id="message"
-              {...register('message')}
-              className="border-gray-300 mt-2 p-2 border rounded-md focus:ring-2 focus:ring-blue-400 w-full text-slate-800 focus:outline-none min-h-40"
-            />
-            {errors.message && <p className="mt-1 text-red-500 text-xs">{errors.message.message}</p>}
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md focus:ring-2 focus:ring-blue-400 w-full text-white focus:outline-none"
-          >
-            Submit
-          </button>
-        </form>
-        {status && <p className="mt-4 text-center text-gray-700">{status}</p>}
-      </div>
+                placeholder="Write your message..."
+                value={formData.message}
+                onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                }
+                className="border rounded-md p-2 w-full"
+            ></textarea>
+            {error && <p className="text-red-500">{error}</p>}
+            <button
+                type="submit"
+                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
 
-      {/* Messages Section (Left) */}
-      <div className="bg-secondary shadow-lg p-6 rounded-lg w-full md:w-2/3 max-h-[80vh] overflow-y-auto">
-        <h2 className="mb-4 font-semibold text-slate-100 text-xl">Previous Entries</h2>
-        <ul className="space-y-4">
-          {entries.map((entry) => (
-            <li key={entry.id} className="pb-4 border-b">
-              <div>
-                <strong className="text-lg text-slate-400">{entry.name}</strong>
-                <p className="mt-1 text-slate-200 text-sm">{entry.message}</p>
-                <small className="block mt-2 text-slate-200 text-xs">{new Date(entry.createdAt).toLocaleString()}</small>
-              </div>
-            </li>
-          ))}
-        </ul>
+        {/* Messages Section */}
+        <div className="lg:w-1/2">
+          <h2 className="text-2xl font-bold mb-4">Messages</h2>
+          <div className="flex flex-col gap-4">
+            {messages.map((msg: any, idx: number) => (
+                <div key={idx} className="border rounded-md p-4">
+                  <p className="font-bold">{msg.name}</p>
+                  <p>{msg.message}</p>
+                </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-    </>
   );
 };
 
