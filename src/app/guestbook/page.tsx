@@ -3,6 +3,10 @@
 
 import{ useUser } from '@auth0/nextjs-auth0/client';
 import Guestbook from '@/components/Guestbook';
+import useRouter from 'next/navigation';import Link from 'next/link';
+
+
+
 
 function GuestbookPage () {
   const { user, isLoading } = useUser();
@@ -13,13 +17,13 @@ function GuestbookPage () {
     return (
       <div className="text-center">
         <p>You must be logged in to access the guestbook.</p>
-        <a href="/api/auth/login" className="text-blue-500 hover:underline">Login</a>
+        <Link href='api/auth/login' className="text-blue-500 hover:underline">Login</Link>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="mx-auto p-8 container">
       <Guestbook />
     </div>
   );
