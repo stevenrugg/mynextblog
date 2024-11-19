@@ -4,8 +4,8 @@ import  prisma  from '@/lib/prisma';  // import Prisma client
 import { z } from 'zod';
 
 const guestbookSchema = z.object({
-  name: z.string().min(3),
-  message: z.string().min(10),
+  name: z.string().min(2),
+  message: z.string().min(2),
 });
 
 export async function POST(req: Request) {
