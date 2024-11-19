@@ -5,7 +5,7 @@ import PageHeader from '@/components/page-header';
 
 const GuestbookPage: React.FC = () => {
     return (
-        <div className="container mx-auto p-6">
+        <div className="container mx-auto py-4">
             <PageHeader title="Guestbook" description='Sign the Guestbook, leave a comment or just say "I was here!"'></PageHeader>
             <Guestbook />
         </div>
