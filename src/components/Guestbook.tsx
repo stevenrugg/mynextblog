@@ -10,7 +10,7 @@ const Guestbook: React.FC = () => {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const res = await fetch('https://seattlesupergeek.io/api/guestbook');
+      const res = await fetch('../api/guestbook/');
       const data = await res.json();
       setMessages(data);
     };
