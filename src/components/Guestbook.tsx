@@ -35,7 +35,7 @@ const Guestbook: React.FC = () => {
       });
 
       setFormData({ name: '', message: '' });
-      const res = await fetch('src/app/api/guestbook');
+      const res = await fetch('src/app/api/guestbook/');
       setMessages(await res.json());
     } catch (err: any) {
       setError(err.errors?.[0]?.message || 'Invalid input');
