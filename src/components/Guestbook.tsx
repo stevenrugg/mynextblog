@@ -8,9 +8,11 @@ const Guestbook: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', message: '' });
   const [error, setError] = useState('');
 
+
+  
   useEffect(() => {
     const fetchMessages = async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/guestbook`);
+      const res = await fetch(`../app/api/guestbook`);
       const data = await res.json();
       setMessages(data);
     };
@@ -28,14 +30,14 @@ const Guestbook: React.FC = () => {
 
     try {
       schema.parse(formData);
-      await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/guestbook`, {
+      await fetch(`../app/api/guestbook`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
       setFormData({ name: '', message: '' });
-      const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/guestbook`);
+      const res = await fetch(`../app/api/guestbook`);
       setMessages(await res.json());
     } catch (err: any) {
       setError(err.errors?.[0]?.message || 'Invalid input');
