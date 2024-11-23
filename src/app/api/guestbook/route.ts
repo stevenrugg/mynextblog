@@ -1,14 +1,24 @@
 // app/agr/guestbook/route.ts
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import  prisma  from '@/lib/prisma';  // import Prisma client
 import { z } from 'zod';
 
 const guestbookSchema = z.object({
-  name: z.string().min(2),
-  message: z.string().min(2),
+  name: z.string().min(2).max(50),
+      message: z.string().min(2).max(200),
 });
 
-export async function POST(req: Request) {
+
+export async function GET() {
+  const entries = await prisma.guestbook.findMany({
+    orderBy: { createdAt: 'desc' },
+  });
+
+  return NextResponse.json(entries);
+}
+
+
+export async function POST(req: NextRequest, res: NextResponse) {
   try {
     // Parse the incoming request body
     const body = await req.json();
@@ -29,10 +39,4 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET() {
-  const entries = await prisma.guestbook.findMany({
-    orderBy: { createdAt: 'desc' },
-  });
 
-  return NextResponse.json(entries);
-}
