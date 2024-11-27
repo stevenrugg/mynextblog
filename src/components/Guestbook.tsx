@@ -1,6 +1,8 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/authContext';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { getAuth, signInWithPopup } from 'firebase/auth';
 import { app, githubProvider } from '@/lib/firebaseConfig';
 import { z } from 'zod';
@@ -89,8 +91,8 @@ const Guestbook = () => {
               </button>
             </form>
           ) : (
-            <button onClick={handleGithubLogin} className="mt-4 bg-blue-500 text-white rounded-md w-8/12 h-10">
-              Sign in with Google
+            <button onClick={handleGithubLogin} className="hover:bg-purple-500 my-4 ring-1 ring-blue-900 bg-blue-500 text-white rounded-md w-8/12 h-10">
+              Sign in with Github
             </button>
           )}
         </div>

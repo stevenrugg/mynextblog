@@ -1,15 +1,23 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { GithubAuthProvider } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PRIVATE_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PRIVATE_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PRIVATE_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PRIVATE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PRIVATE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PRIVATE_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PRIVATE_FIREBASE_MEASUREMENTID,
+  apiKey: "AIzaSyD8MRVTMkNXCen3ZFhZ7s4_2PwTH6ThyNI",
+  authDomain: "seattlesupergeek-ddc7e.firebaseapp.com",
+  projectId: "seattlesupergeek-ddc7e",
+  storageBucket: "seattlesupergeek-ddc7e.firebasestorage.app",
+  messagingSenderId: "128083476438",
+  appId: "1:128083476438:web:29ec7eabfedac91bae2e77",
+  measurementId: "G-K49DFHNXQG"
 };
 
+// Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);
 export const githubProvider = new GithubAuthProvider();
